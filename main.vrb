@@ -1,0 +1,22 @@
+\frametitle{Implementation der Gram-Matrix in PyTorch}
+
+
+\begin{listing}[H]
+\begin{minted}{python}
+def gram_matrix(tensor):
+    b, c, h, w = tensor.shape
+    normalizer = c * h * w
+    tensor_flat = tensor.flatten(2)
+
+    return torch.div(
+        torch.bmm(
+            tensor_flat,
+            tensor_flat.transpose(1, 2)
+        ),
+        normalizer
+    )
+\end{minted}
+\end{listing}
+
+
+
